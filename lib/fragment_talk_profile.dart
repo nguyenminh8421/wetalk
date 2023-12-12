@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'fragment_talk_profile_edit.dart';
+
 
 class ProfilePage extends StatelessWidget {
   @override
@@ -30,6 +32,10 @@ class ProfilePage extends StatelessWidget {
                     padding: const EdgeInsets.all(4.0),
                     child: ElevatedButton(
                       onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context)=> HPage())
+                        );
 
                       },
                       style: ElevatedButton.styleFrom(
