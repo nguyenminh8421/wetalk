@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/fragment_talk_chat_home.dart';
-import 'package:flutter_app/fragment_talk_profile.dart';
+import 'package:flutter_app/modules/chat/fragment_talk_chat_home.dart';
+import 'package:flutter_app/modules/personal/page/fragment_talk_profile.dart';
 import 'package:flutter_app/upload_video.dart';
 
-import 'fragment_talk_chat.dart';
-import 'fragment_talk_study.dart';
+import '../../chat/fragment_talk_chat.dart';
+import '../../study/page/fragment_talk_study.dart';
 
 class MainPage extends StatelessWidget {
   @override

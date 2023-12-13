@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/activity_main.dart';
+import 'package:flutter_app/main.dart';
 import 'package:flutter_app/upload_video.dart';
 
-import 'fragment_talk_home.dart';
+import '../../home/page/fragment_talk_home.dart';
 import 'fragment_talk_register.dart';
 
 class MyWidget extends StatelessWidget {
+  static String routeName = "login_screen";  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/fragment_talk_done.dart';
+import 'package:flutter_app/modules/authentication/page/fragment_talk_done.dart';
 
 class LoginNumberPhonePage2 extends StatelessWidget {
   @override
