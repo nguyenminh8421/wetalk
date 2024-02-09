@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/main.dart';
+import 'package:flutter_app/modules/home/page/fragment_talk_home1.dart';
 import 'package:flutter_app/upload_video.dart';
 
 import '../../home/page/fragment_talk_home.dart';
@@ -10,35 +11,33 @@ class MyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: Center(
-          child: SingleChildScrollView(
+        body: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const SizedBox(height: 50,),
                 SizedBox(
-                  height: 180,
-                  child: Image.asset('assets/images/logo.png'),
+                  height: 14,
                 ),
-                const Text(
-                  'SignChat',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 30,
-                    color: Colors.blue,
-                  ),
+                SizedBox(
+                  height: 330,
+                  child: Image.asset('assets/images/top_background1.png'),
                 ),
-                const Text(
-                  'Lan truyền và kết nối',
-                  style: TextStyle(
-                    color: Colors.blue,
-                    fontSize: 16,
+                const Padding(
+                  padding: EdgeInsets.only(left: 10.0),
+                  child: Text(
+                    'Chào Mừng Bạn',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30,
+                      color: Colors.blue,
+                    ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                   child: TextFormField(
                     decoration: InputDecoration(
                       hintText: 'Email',
@@ -66,70 +65,82 @@ class MyWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 20),
-                GestureDetector(
-                  onTap: () {
-                    // Handle forgot password
-                  },
-                  child: const Text(
-                    'Quên mật khẩu',
-                    style: TextStyle(color: Colors.blue),
-                  ),
-                ),
 
-                const SizedBox(height: 20),
-                SizedBox(
-                  height: 60,
-                  width: 320,
-                  child: ElevatedButton(
+                const SizedBox(height: 10),
+              Container(
+                height: 60,
+                padding: EdgeInsets.only(left: 220), // Dịch SizedBox cách lề phải 30px
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/btn_arraw1.png'),
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                  child: IconButton(
+                    icon: Icon(Icons.arrow_forward_ios),
+                    iconSize: 60,
+                    color: Colors.transparent, // Ẩn IconButton
                     onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => MainPage()),
                       );
                     },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
-                      foregroundColor: Colors.white,
-                    ),
-                    child: const Text('Đăng nhập'),
                   ),
                 ),
+              ),
 
-                const SizedBox(height: 20),
+
+                const SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
-                      height: 1,
-                      width: (MediaQuery.of(context).size.width - 40) / 2,
-                      color: Colors.grey,
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8),
-                      child: Text('Or'),
+                      margin: EdgeInsets.symmetric(horizontal: 20),
+                      width: 140,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(color: Colors.blueGrey, width: 1),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Vào nhanh',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF3B608C),
+                          ),
+                        ),
+                      ),
                     ),
                     Container(
-                      height: 1,
-                      width: (MediaQuery.of(context).size.width - 40) / 2,
-                      color: Colors.grey,
+                      margin: EdgeInsets.symmetric(horizontal: 20),
+                      width: 140,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(color: Colors.blueGrey, width: 1),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Google',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF3B608C),
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 20),
-                SizedBox(
-                  height: 60,
-                  width: 320,
-                  child: ElevatedButton(
-                    onPressed: () {
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white70,
-                      foregroundColor: Colors.black,
-                    ),
-                    child: const Text('Đăng nhập bằng số điện thoại'),
-                  ),
-                ),
+
+
+
+
                 const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -140,7 +151,8 @@ class MyWidget extends StatelessWidget {
                         // Handle sign up
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => TalkRegisterFragment()),
+                          // MaterialPageRoute(builder: (context) => TalkRegisterFragment()),
+                          MaterialPageRoute(builder: (context) => home1()),
                         );
                       },
                       child: const Text(
@@ -164,7 +176,6 @@ class MyWidget extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
+      );
   }
 }

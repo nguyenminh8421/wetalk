@@ -6,115 +6,95 @@ import 'package:flutter_app/upload_video.dart';
 import '../../chat/fragment_talk_chat.dart';
 import '../../study/page/fragment_talk_study.dart';
 
-class MainPage extends StatelessWidget {
+// void main() {
+//   runApp(MainPage());
+// }
+
+class MainPage extends StatefulWidget {
+  @override
+  _MainPageState createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  bool isLoggedIn = false; // Trạng thái đăng nhập
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Home'),
-      ),
-      body: MyMainContentView(),
-      drawer: Drawer(
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              child: ListView(
-                children: <Widget>[
-                  SizedBox(
-                    height: 180,
-                    child: DrawerHeader(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                      ),
-                      child: SizedBox(
-                        child: Image.asset(
-                          'assets/images/logo.png',
-                        ),
-                      ),
-                    ),
-                  ),
-                  // Add Drawer items here
-                ],
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: DefaultTabController(
+        length: isLoggedIn ? 2 : 4,
+        // Số lượng tab phụ thuộc vào trạng thái đăng nhập
+        child: Scaffold(
+          body: TabBarView(
+            children: isLoggedIn
+                ? [
+              // Các tab khi đăng nhập
+              Navigator(
+                onGenerateRoute: (settings) {
+                  return MaterialPageRoute(
+                    builder: (context) => ChatMainScreen(),
+                  );
+                },
               ),
+              Navigator(
+                onGenerateRoute: (settings) {
+                  return MaterialPageRoute(
+                    builder: (context) => TalkStudyScreen(),
+                  );
+                },
+              ),
+            ]
+                : [
+              // Các tab khi chưa đăng nhập
+              Navigator(
+                onGenerateRoute: (settings) {
+                  return MaterialPageRoute(
+                    builder: (context) => ChatMainScreen(),
+                  );
+                },
+              ),
+              Navigator(
+                onGenerateRoute: (settings) {
+                  return MaterialPageRoute(
+                    builder: (context) => TalkStudyScreen(),
+                  );
+                },
+              ),
+              Navigator(
+                onGenerateRoute: (settings) {
+                  return MaterialPageRoute(
+                    builder: (context) => ProfilePage(),
+                  );
+                },
+              ),
+              Navigator(
+                onGenerateRoute: (settings) {
+                  return MaterialPageRoute(
+                    builder: (context) => Page4(),
+                  );
+                },
+              ),
+            ],
+          ),
+          bottomNavigationBar: Container(
+            color: Colors.grey[200],
+            child: TabBar(
+              tabs: isLoggedIn
+                  ? [
+                Tab(icon: Icon(Icons.message_rounded), text: 'Tin nhắn'),
+                Tab(icon: Icon(Icons.upload_file_rounded), text: 'Học tập'),
+              ]
+                  : [
+                Tab(icon: Icon(Icons.message_rounded), text: 'Tin nhắn'),
+                Tab(icon: Icon(Icons.upload_file_rounded), text: 'Học tập'),
+                Tab(icon: Icon(Icons.person), text: 'Cá nhân'),
+                Tab(icon: Icon(Icons.travel_explore), text: 'Khám phá'),
+              ],
             ),
-          ],
+          ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        onTap: (index) {
-          // Handle bottom navigation bar item tap
-          switch (index) {
-            case 0:
-              Navigator.push(context, MaterialPageRoute(builder: (context) => ChatMainScreen()));
-              break;
-            case 1:
-              Navigator.push(context, MaterialPageRoute(builder: (context) => TalkStudyScreen()));
-              break;
-            case 2:
-              Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage()));
-              break;
-            case 3:
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Page4()));
-              break;
-          }
-        },
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.message_rounded),
-            label: 'Tin nhắn',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.upload_file_rounded),
-            label: 'Học tập',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Cá nhân',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.travel_explore),
-            label: 'Khám phá',
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class MyMainContentView extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text('Main content'));
-  }
-}
-
-class Page1 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Page 1')),
-      body: Center(child: Text('Content of Page 1')),
-    );
-  }
-}
-
-class Page2 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Page 2')),
-      body: Center(child: Text('Content of Page 2')),
-    );
-  }
-}
-
-class Page3 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Page 3')),
-      body: Center(child: Text('Content of Page 3')),
     );
   }
 }
