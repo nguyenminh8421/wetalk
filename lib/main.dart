@@ -1,8 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'fragment_talk_chat.dart';
-import 'fragment_talk_home.dart';
-import 'package:flutter_app/fragment_talk_login.dart';
+import 'modules/home/page/fragment_talk_home.dart';
+import 'package:flutter_app/modules/authentication/page/fragment_talk_login.dart';
+
+// import 'fragment_talk_chat.dart';
+// import 'fragment_talk_home.dart';
+// import 'package:flutter_app/fragment_talk_login.dart';
 final GlobalKey<NavigatorState> mainNavigatorKey = GlobalKey<NavigatorState>();
 
 void main() {

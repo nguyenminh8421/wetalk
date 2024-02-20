@@ -1,26 +1,52 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/fragment_talk_chat_home.dart';
-import 'package:flutter_app/fragment_talk_profile.dart';
+import 'package:flutter_app/modules/chat/fragment_talk_chat_home.dart';
+import 'package:flutter_app/modules/personal/page/fragment_talk_profile.dart';
 import 'package:flutter_app/upload_video.dart';
 
-import 'fragment_talk_chat.dart';
-import 'fragment_talk_study.dart';
+import '../../chat/fragment_talk_chat.dart';
+import '../../study/page/fragment_talk_study.dart';
 
-void main() {
-  runApp(MainPage(
-  ));
+// void main() {
+//   runApp(MainPage());
+// }
+
+class MainPage extends StatefulWidget {
+  @override
+  _MainPageState createState() => _MainPageState();
 }
 
-class MainPage extends StatelessWidget {
+class _MainPageState extends State<MainPage> {
+  bool isLoggedIn = false; // Trạng thái đăng nhập
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: DefaultTabController(
-        length: 4,
+        length: isLoggedIn ? 2 : 4,
+        // Số lượng tab phụ thuộc vào trạng thái đăng nhập
         child: Scaffold(
           body: TabBarView(
-            children: [
+            children: isLoggedIn
+                ? [
+              // Các tab khi đăng nhập
+              Navigator(
+                onGenerateRoute: (settings) {
+                  return MaterialPageRoute(
+                    builder: (context) => ChatMainScreen(),
+                  );
+                },
+              ),
+              Navigator(
+                onGenerateRoute: (settings) {
+                  return MaterialPageRoute(
+                    builder: (context) => TalkStudyScreen(),
+                  );
+                },
+              ),
+            ]
+                : [
+              // Các tab khi chưa đăng nhập
               Navigator(
                 onGenerateRoute: (settings) {
                   return MaterialPageRoute(
@@ -54,7 +80,12 @@ class MainPage extends StatelessWidget {
           bottomNavigationBar: Container(
             color: Colors.grey[200],
             child: TabBar(
-              tabs: [
+              tabs: isLoggedIn
+                  ? [
+                Tab(icon: Icon(Icons.message_rounded), text: 'Tin nhắn'),
+                Tab(icon: Icon(Icons.upload_file_rounded), text: 'Học tập'),
+              ]
+                  : [
                 Tab(icon: Icon(Icons.message_rounded), text: 'Tin nhắn'),
                 Tab(icon: Icon(Icons.upload_file_rounded), text: 'Học tập'),
                 Tab(icon: Icon(Icons.person), text: 'Cá nhân'),
